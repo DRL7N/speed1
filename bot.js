@@ -2899,8 +2899,6 @@ client.on('message', message => {
       if (!message.content.startsWith(prefix)) return;
       var args = message.content.split(' ').slice(1);
       var argresult = args.join(' ');
-      if (message.author.id == 383394687349948426) return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **');
-
 
     if (message.content.startsWith(prefix + 'playing')) {
     if (message.author.id !== '383394687349948426','431844030587076619') return message.reply('** هذا الأمر فقط لصاحب البوت و شكراًً **')
