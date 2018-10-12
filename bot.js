@@ -145,7 +145,7 @@ let muteRole1 = message.guild.roles.find("name", "Muted");
      if (!message.channel.guild) return;
              message.author.delete
 
-let muteRole1 = message.guild.roles.find("name", "Muted");
+let muteRole1 = message.guild.roles.find("name", "Mut11ed");
 if(!muteRole1) {
         muteRole1 = await message.guild.createRole({
           name: "Muted",
