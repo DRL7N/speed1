@@ -27,7 +27,7 @@ const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const sql = require("sqlite");
  const dateFormat = require('dateformat'); 
  const pretty = require('pretty-ms') 
-
+const {OWNERS} = require('./sys');
 ,ti={}  
 ,spee={};
 
@@ -2584,10 +2584,7 @@ client.on('message', message => {
   let args = message.content.split(" ").slice(1);
 
   if (command == "ban") {
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         
-  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
+        if(!OWNERS.includes(message.author.id)) return;
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   /*let b5bzlog = client.channels.find("name", "5bz-log");
@@ -2623,10 +2620,7 @@ client.on('message', message => {
   let args = message.content.split(" ").slice(1);
 
   if (command == "kick") {
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         
-  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+              if(!OWNERS.includes(message.author.id)) return;
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
@@ -2652,9 +2646,7 @@ client.on('message', message => {
 client.on('message', message => {
 var prefix = "!";
        if(message.content === prefix + "mutechannel") {
-                           if(!message.channel.guild) return message.reply('** This command only for servers**');
-
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
+if(!OWNERS.includes(message.author.id)) return;
               message.channel.overwritePermissions(message.guild.id, {
             SEND_MESSAGES: false
 
@@ -2900,7 +2892,7 @@ client.on('message', message => {
 
 
     if (message.content.startsWith(prefix + 'playing')) {
-    if (message.author.id !== '383394687349948426','431844030587076619') return
+    if(!OWNERS.includes(message.author.id)) return;
     client.user.setGame(argresult);
         message.channel.sendMessage(`**${argresult}** : تم تغيير الحالة`)
     } else
@@ -2913,14 +2905,14 @@ client.on('message', message => {
     } else
 
     if (message.content.startsWith(prefix + 'setname')) {
-    if (message.author.id !== '383394687349948426','431844030587076619') return
+    if(!OWNERS.includes(message.author.id)) return;
       client.user.setUsername(argresult).then
           message.channel.sendMessage(`**${argresult}** : تم تغير الأسم`)
       return message.reply("**لا تستطيع تغير الأسم الا بعد ساعتين**");
     } else
 
     if (message.content.startsWith(prefix + 'setavatar')) {
-    if (message.author.id !== '383394687349948426','431844030587076619') return
+    if(!OWNERS.includes(message.author.id)) return;
     client.user.setAvatar(argresult);
         message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
     }
